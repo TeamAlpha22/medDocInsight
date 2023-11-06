@@ -1,0 +1,191 @@
+
+<mat-grid-list lass="grid-list-1" cols="1" rowHeight="80px" dir="ltr"  >
+  <mat-grid-tile  [style.background]="color1">
+    <div class="home-head-1">
+      Welcome Alex,
+    </div>
+    <div class="home-head-2">
+      <mat-tab-group  (selectedTabChange)="onChangeMedical($event)">
+        <mat-tab >
+
+          <ng-template mat-tab-label >
+            <mat-icon>filter_center_focus</mat-icon>
+            &nbsp;Overview
+          </ng-template>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon>exit_to_app</mat-icon>
+            &nbsp;Medical Document Insights
+          </ng-template>
+        </mat-tab>
+        <mat-tab >
+
+          <ng-template mat-tab-label>
+            <mat-icon>chrome_reader_mode</mat-icon>
+            &nbsp;Open Queries
+          </ng-template>
+        </mat-tab>
+
+        <!-- <mat-tab label="Medical Document Insights "> Medical Document Insights </mat-tab>
+        <mat-tab label="Open Queries"> Open Queries </mat-tab> -->
+      </mat-tab-group>
+    </div>
+    <div class="upload-doc">
+      <button class="upload-doc-btn">
+        <div class="upload-icon">
+          <span class="material-symbols-outlined">
+            upload
+            </span>
+        </div>
+        Upload Document</button>
+    </div>
+  </mat-grid-tile>
+
+</mat-grid-list>
+<div *ngIf="activeMatatb === 1" >
+  <button class="medical-pdf">
+    Medical XYZ.pdf
+  </button>
+
+  <div class="row">
+    <div class="column">
+      <div class="left-panel-header">
+
+        <span class="material-symbols-outlined"
+        (click)="incrementZoom(-0.1)">
+          zoom_in
+        </span>
+        <span class="material-symbols-outlined zoom-out"
+        (click)="incrementZoom(+0.1)">
+          zoom_out
+        </span>
+        <mat-icon class="rotatebackgnd zoom-out" (click)="rotatePdf()">rotate_90_degrees_ccw</mat-icon>
+
+      </div>
+      <div class="pdf-container">
+        <pdf-viewer [src]="pdfSrc"
+        [render-text]="true"
+        [original-size]="false"
+        [zoom]="zoom"
+        [show-all]="true"
+        [rotation]="pdfRotation"
+        style="width: auto; height: 400px">
+        </pdf-viewer>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="accordian-class" >
+        <mat-accordion  *ngFor="let option of accordianData">
+          <mat-expansion-panel hideToggle>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                              (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{option.title}}
+              </mat-panel-title>
+              <!-- <mat-panel-description>
+                {{option.content}}{{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div >
+        <input type="text" class="send-meessage" id="fname" name="fname">
+        <button type="submit" class="send-meessage-button">
+          <svg
+             xmlns="http://www.w3.org/2000/svg"
+             width="12"
+             height="12"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             class="feather feather-send"
+             >
+             <line x1="22" y1="2" x2="11" y2="13"></line>
+             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="data-insight" *ngIf="activeMatatb === 2">
+
+  <mat-grid-list cols="2" rowHeight="1:1" dir="ltr"  >
+    <mat-grid-tile>
+
+      <h3 class="data-insight-input-heading">  Frequently Asked Questions(click to get the response)</h3>
+      <hr class="data-insight-input">
+
+
+      <!-- <mat-form-field class="data-insight-input" appearance="fill">
+        <mat-label>Frequently Asked Questions(click to get the response)</mat-label>
+        <input matInput placeholder="" disabled>
+      </mat-form-field> -->
+      <div class="accordian-class-2" >
+        <mat-accordion  *ngFor="let option of dataInsight">
+          <mat-expansion-panel hideToggle>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                              (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{option.title}}
+              </mat-panel-title>
+              <!-- <mat-panel-description>
+                {{option.content}}{{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div  class="data-send-meessage">
+        <input type="text" class="send-meessage" placeholder="Ask Your Question" name="fname">
+        <button type="submit" class="send-meessage-button2">
+          <svg
+             xmlns="http://www.w3.org/2000/svg"
+             width="12"
+             height="12"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             class="feather feather-send"
+             >
+             <line x1="22" y1="2" x2="11" y2="13"></line>
+             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+
+      </div>
+
+      <table id="prompts" class="sugg-prompts">
+        <h3 class="sugg-heading">Suggested Prompts</h3>
+        <tr>
+          <td>What is the gender breakdown in different subjects</td>
+        </tr>
+        <tr>
+          <td>Can you provide on the male distribution across subjects</td>
+        </tr>
+        <tr>
+          <td>I'm curious about the proportion of males and females in different subjects. Can you help me with that</td>
+        </tr>
+      </table>
+    </mat-grid-tile>
+    <mat-grid-tile>2</mat-grid-tile>
+
+
+  </mat-grid-list>
+</div>
+
+

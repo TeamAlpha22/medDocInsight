@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Med Home Page Mat tab changes Start*/
+.mat-mdc-tab-header {
+  --mat-tab-header-label-text-font: Roboto, sans-serif;
+  --mat-tab-header-label-text-size: 14px;
+  --mat-tab-header-label-text-tracking: 1px;
+  --mat-tab-header-label-text-line-height: 36px;
+  --mat-tab-header-label-text-weight: 550;
+}
+
+.mat-mdc-tab.mdc-tab--active:hover .mdc-tab__text-label {
+  color: #FB4E0B !important;
+
+}
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: #FB4E0B !important;
+
+
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+  color: #FB4E0B !important
+}
+.mat-mdc-tab .mdc-tab-indicator__content--underline {
+  border-color:  #FB4E0B !important;
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+  color: rgba(0,0,0,0.87) !important;
+}
+/* Med Home Page Mat tab changes End*/
