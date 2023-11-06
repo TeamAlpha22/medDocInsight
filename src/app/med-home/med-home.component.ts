@@ -10,7 +10,7 @@ export class MedHomeComponent {
   zoom: number = 1.0;
   panelOpenState = false;
   overview:boolean=false;
-  activeMatatb:number=2;
+  activeMatatb:number=0;
   pdfRotation: number =0;
   accordianData:any = [
                         {
