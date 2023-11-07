@@ -49,7 +49,16 @@ export class MedHomeComponent {
                         "title": "Physical Condition",
                       }
 
-                      ];
+                    ];
+  dataInsight2:any = [
+                      {
+                        "title": "Filter the data of subject between age 35 and 65 and with precondition as hypertension and either two doses or no vaccine??",
+                      },
+                      {
+                        "title": "What is the distribution of male and female in subjects??",
+                      }
+
+                    ];
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
 
   onChangeOverview(){

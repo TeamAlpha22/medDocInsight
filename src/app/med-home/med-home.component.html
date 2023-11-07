@@ -183,29 +183,28 @@
       </table>
     </mat-grid-tile>
     <mat-grid-tile>
-      <!-- <div class="sum-new-div">
+      <div class="sum-new-div">
         <div class="sum-heading">Summary</div>
         <hr>
         <p class="sum-content">This is some text in a div element.</p>
       </div>
-      <div class="accordian-class-2" >
-        <mat-accordion  *ngFor="let option of dataInsight">
+      <div class="accordian-class-3" >
+        <mat-accordion  *ngFor="let option of dataInsight2">
           <mat-expansion-panel hideToggle>
           </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true"
                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header class="mat-expansion-header">
+            <mat-expansion-panel-header class="mat-expansion-header-2">
               <mat-panel-title>
                 {{option.title}}
               </mat-panel-title>
-              <mat-panel-description>
-                {{option.content}}{{panelOpenState ? 'open' : 'closed'}}
-              </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
+             The distribution of male amd female in subjects is female and male 3342.
+             <div id="myPlot" style="width:100%;max-width:700px"></div>
+
           </mat-expansion-panel>
         </mat-accordion>
-      </div> -->
+      </div>
     </mat-grid-tile>
 
 

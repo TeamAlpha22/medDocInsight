@@ -130,6 +130,9 @@
 .mat-expansion-header{
   height: 31px !important;
 
+}.mat-expansion-header-2{
+  height: 45px !important;
+
 }
 .send-meessage{
   width: 95%;
@@ -170,6 +173,12 @@
   margin-left: 0px;
   position: absolute;
   margin-top: -500px;
+}
+.accordian-class-3{
+  width: 95%;
+  margin-left: -31px;
+  position: absolute;
+  margin-top: -224px
 }
 .data-send-meessage{
   margin-top: 0px;
@@ -238,7 +247,7 @@
   border-top-left-radius: 5px;
   width: 95%;
   height: 25%;
-  margin-bottom: 73%;
+  margin-bottom: 73.5%;
   margin-left: -5%;
 }
 .sum-heading{
