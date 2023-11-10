@@ -104,10 +104,11 @@ cursor: pointer;
 }
 .header-name{
   text-align: center;
-  padding-bottom: 0.4%;
-  padding-left: 47%;
+  padding-bottom: 0.0%;
+  padding-left: 45.5%;
   font-family: cursive;
   position: absolute;
+  font-size: 26px;
 }
 .profile-img{
   width: 11%;

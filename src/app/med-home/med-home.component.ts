@@ -18,11 +18,11 @@ export class MedHomeComponent {
   pdfRotation: number =0;
   accordianData:any = [
                         {
-                          "title": "CD codes",
+                          "title": "ICD codes",
                           "desc": "K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) <br> Date: 3 October 2023<br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised R70.0(Elevated ESR)</a> <br> Date: 10 October 2023 <br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target=''>Reference Text: The blood report of patient shows elevated ESR(70.0)</a><br> Page Number: 5"
                         },
                         {
-                          "title": "Medical History (Within past 6 months)",
+                          "title": "Medication History (Within past 6 months)",
                           "desc": ""
                         },
                         {
@@ -42,7 +42,7 @@ export class MedHomeComponent {
                           "desc":"No Data Found"
                         },
                         {
-                          "title": "Disease Status",
+                          "title": "Disease Progression",
                           "desc":"Knee pain - relapsing <br> Reference Text - worsening pain in knee"
                         }
                       ];

@@ -296,3 +296,9 @@ mat-expansion-panel-header {
   font-weight: 580;
   font-family: system-ui
 }
+.prior-disease{
+  font-weight: 600;
+  font-size: 17px;
+  font-family: cursive;
+  color: #FB4E0B;
+}

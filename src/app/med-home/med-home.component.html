@@ -52,11 +52,11 @@
     <mat-grid-tile>
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Prior Auth Req is for</mat-card-title>
+          <mat-card-title>Prior Authorization Request</mat-card-title>
         </mat-card-header>
         <div class="list-Data">
-          <p><b>Drug/Procedure Name:</b> Actemra</p>
-          <p><b>HCSPS?:</b> J3262</p>
+          <p><b>Drug/Procedure Name:</b><b class="prior-disease"> Actemra </b></p>
+          <p><b>HCSPS Code:</b> J3262</p>
 
         </div>
       </mat-card>
@@ -69,7 +69,7 @@
         </mat-card-header>
         <div class="list-Data">
           <p><b>Name:</b> Cameron</p>
-          <p><b>Gender:</b>M</p>
+          <p><b>Gender:</b> M</p>
           <p><b>Address:</b> Pier 186, 9St, New York, NY 10036</p>
             <p><b>Patient Age:</b> 59</p>
           <p><b>Patient Weight:</b> 91</p>
@@ -167,7 +167,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="activeMatatb === 1" >
+<div *ngIf="activeMatatb === 8" >
 
   <div class="row">
     <div class="column">
