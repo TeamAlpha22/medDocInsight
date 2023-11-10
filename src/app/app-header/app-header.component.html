@@ -8,14 +8,27 @@
   <!-- <img src="./assets/images/Logo.png" alt="logo" class="nav-logo"/> -->
   <span class="example-spacer"></span>
   <div class="menu-container" >
-    <!--Home button-->
-    <!-- <button mat-button id="HOME"  (click)="gotoHomePage()">Home</button> -->
-    <!-- <mat-icon class="dropbtn"(click)="gotoHomePage()">home</mat-icon> -->
-    <a class="logo-img" >
+
+    <a class="logo-img" (click)="goToHome()" >
       <img class="nav-logo-img" src="assets/exl_logo_rgb.png" alt="logo">
     </a>
   </div>
 
+  <div class="header-name">iClinician</div>
+
+  <!--Sign In button-->
+  <span [matMenuTriggerFor]="menu" class="profile-menu-1">
+
+    <img class="profile-img" src="assets/user.png" alt="logo">
+  </span>
+  <mat-menu #menu="matMenu" class="mat-menu">
+
+    <button class= "profile-option" mat-menu-item  routerLink="/login" >Hi, Alex</button>
+    <button class= "profile-option" mat-menu-item  routerLink="/login" >Logout</button>
+
+  </mat-menu>
+
+  <!-- <button *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" mat-button class="dropbtn" routerLink="/Login">Login</button> -->
 
 
 </mat-toolbar>

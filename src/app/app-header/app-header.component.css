@@ -102,3 +102,27 @@ b.username-sct {
 .user-sct{
 cursor: pointer;
 }
+.header-name{
+  text-align: center;
+  padding-bottom: 0.4%;
+  padding-left: 47%;
+  font-family: cursive;
+  position: absolute;
+}
+.profile-img{
+  width: 11%;
+  cursor: pointer;
+  padding-top: 10px;
+  /* padding-left: 102px; */
+  margin-left: 79%;
+}
+
+
+.profile-menu-1{
+  margin-left: 15px;
+}
+span.mat-mdc-menu-item-text {
+  font-size: 14px !important;
+  padding-left: 3px;
+  margin-bottom: 15px;
+}

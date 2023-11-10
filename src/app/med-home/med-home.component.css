@@ -1,27 +1,25 @@
 
-
-
-
 .home-head-1{
   position: absolute;
-  left: 40px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 590;
   margin-top: -43px;
+  font-family: cursive;
 }
+
 .home-head-2{
   position: absolute;
   left: 25px;
   font-size: 15px;
   font-weight: 500;
-  margin-top: 30px;
+  margin-top: 31px;
 }
 .mdc-tab-indicator {
   height: 86% !important;
 }
 .upload-doc{
   position: absolute;
-  right: 45px;
+  right: 21px;
   font-size: 15px;
   font-weight: 500;
   margin-top: 30px;
@@ -61,7 +59,7 @@
   border: none;
   font-size: 12px;
   margin-top: 20px;
-
+  cursor: pointer;
 }
 
 * {
@@ -70,9 +68,9 @@
 
 /* Create two equal columns that floats next to each other */
 .column {
-  margin-top: 80px;
+  margin-top: 60px;
   float: left;
-  width: 50%;
+  width: 47%;
   padding: 10px;
   height: 400px; /* Should be removed. Only for demonstration */
 }
@@ -84,7 +82,7 @@
   clear: both;
 }
 .accordian-class{
-  width: 95%;
+  width: 111%;
   margin-left: 0px;
 }
 .pdf-container{
@@ -118,8 +116,8 @@
 }
 .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
 
-  font-size: 12px !important;
-  font-weight: 580 !important;
+  font-size: 13px !important;
+  font-weight: 599 !important;
 
 }
 /* .mat-expansion-panel-header[_ngcontent-ng-c3136379993]:not([aria-disabled=true]) {
@@ -259,4 +257,42 @@
 }
 .sum-content{
   padding: 5px;
+}
+.query-section{
+  margin-top: 174px;
+  position: sticky;
+}
+
+.mat-card-data-sct mat-card{
+  width: 90%;
+  height: 220px;
+    box-shadow: 0px 2px 2px #000;
+}
+.mat-card-data-sct .mat-grid-tile {
+  margin-top: 29px;
+}
+.list-Data{
+  padding: 16px;
+}
+.mat-card-data-sct mat-card-header.mat-mdc-card-header {
+  background-color: #FB4E0B;
+  color: #fff;
+}
+.mat-card-data-sct mat-card-title.mat-mdc-card-title {
+  font-size: 14px;
+}
+mat-expansion-panel-header {
+  margin-bottom: 6px;
+}
+
+.mat-mdc-card-header {
+  padding-top: 1px !important;
+  display: flex;
+
+}
+
+.inner-connet {
+  font-size: 12px !important;
+  font-weight: 580;
+  font-family: system-ui
 }

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-med-home',
@@ -6,6 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./med-home.component.css']
 })
 export class MedHomeComponent {
+  isChatOpen:boolean = false
   color1:any="#ffe6e9"
   zoom: number = 1.0;
   panelOpenState = false;
@@ -14,31 +18,32 @@ export class MedHomeComponent {
   pdfRotation: number =0;
   accordianData:any = [
                         {
-                          "title": "What are the medical and surgical conditions that the applicant has?",
+                          "title": "CD codes",
+                          "desc": "K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) <br> Date: 3 October 2023<br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised R70.0(Elevated ESR)</a> <br> Date: 10 October 2023 <br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target=''>Reference Text: The blood report of patient shows elevated ESR(70.0)</a><br> Page Number: 5"
                         },
                         {
-                          "title": "Does the applicant have any life-threatning medical condition?",
+                          "title": "Medical History (Within past 6 months)",
+                          "desc": ""
                         },
                         {
-                          "title": "What are the medications that the apllicant is taking?",
+                          "title": "Ulcerative collitis",
+                          "desc": "K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) <br> Date: 3 October 2023 <br><a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised R70.0(Elevated ESR)</a> <br> Page Number-5"
                         },
                         {
-                          "title": "What are the Diagnostic and Lab test that the applicant has taken in the last 5 years?",
+                          "title": "Cardiac Disease",
+                          "desc":"No Data Found"
                         },
                         {
-                          "title": "Smoking History?",
+                          "title": "Blood Disorders",
+                          "desc":"DVT <br> Reference Text -The patient has a medical history of DVT <br> Page No:- 4"
                         },
                         {
-                          "title": "What is the social history of the applicant?",
+                          "title": "Lung Conditions",
+                          "desc":"No Data Found"
                         },
                         {
-                          "title": "What are the medical conditions listed in the last office visit?",
-                        },
-                        {
-                          "title": "What are the vitals in the last office visit?",
-                        },
-                        {
-                          "title": "What are the last 1 year BP readings?",
+                          "title": "Disease Status",
+                          "desc":"Knee pain - relapsing <br> Reference Text - worsening pain in knee"
                         }
                       ];
   dataInsight:any = [
@@ -60,6 +65,10 @@ export class MedHomeComponent {
 
                     ];
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+
+  constructor(
+    public dialog: MatDialog
+  ) {}
 
   onChangeOverview(){
 
@@ -84,5 +93,16 @@ export class MedHomeComponent {
   }
   rotatePdf(){
     this.pdfRotation = this.pdfRotation +=90;
+  }
+
+  openQuery(){
+    this.isChatOpen = !this.isChatOpen
+  }
+  uploadDialog() {
+
+    const dialogRef = this.dialog.open(FileUploadComponent, {
+      width: '800px',
+      height: '450px',
+    });
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
@@ -17,15 +18,28 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
+import { ChatSectionComponent } from './chat-section/chat-section.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppHeaderComponent,
-    MedHomeComponent
+    MedHomeComponent,
+    LoginComponent,
+    ChatSectionComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     RouterModule,
     MatSlideToggleModule,
     BrowserAnimationsModule,
@@ -38,7 +52,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatExpansionModule,
     PdfViewerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatProgressBarModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
