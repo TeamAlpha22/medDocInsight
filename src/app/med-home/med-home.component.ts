@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { Router } from '@angular/router';
+import { EventEmiterService } from '../services/event-emiter.service';
 
 @Component({
   selector: 'app-med-home',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./med-home.component.css']
 })
 export class MedHomeComponent {
-  isChatOpen:boolean = false
+  quesValue:string ="";
+  isChatOpen:boolean = false;
   color1:any="#ffe6e9"
   zoom: number = 1.0;
   panelOpenState = false;
@@ -19,7 +21,7 @@ export class MedHomeComponent {
   accordianData:any = [
                         {
                           "title": "ICD codes",
-                          "desc": "K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) <br> Date: 3 October 2023<br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised R70.0(Elevated ESR)</a> <br> Date: 10 October 2023 <br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target=''>Reference Text: The blood report of patient shows elevated ESR(70.0)</a><br> Page Number: 5"
+                          "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications)</b> <br> Date: 3 October 2023<br> <a href='' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised </a> <br> Page Number: 3 <br><b>R70.0(Elevated ESR) </b><br> Date: 10 October 2023 <br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target=''>Reference Text: The blood report of patient shows elevated ESR(70.0)</a><br> Page Number: 5"
                         },
                         {
                           "title": "Medication History (Within past 6 months)",
@@ -27,7 +29,7 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Ulcerative collitis",
-                          "desc": "K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) <br> Date: 3 October 2023 <br><a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised R70.0(Elevated ESR)</a> <br> Page Number-5"
+                          "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) </b><br> Date: 3 October 2023 <br><a href='' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised</a><br> Page Number: 5"
                         },
                         {
                           "title": "Cardiac Disease",
@@ -35,7 +37,7 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Blood Disorders",
-                          "desc":"DVT <br> Reference Text -The patient has a medical history of DVT <br> Page No:- 4"
+                          "desc":"<b>DVT</b> <br> <a href='' target='_blank'>Reference Text -The patient has a medical history of DVT</a> <br> Page No: 4"
                         },
                         {
                           "title": "Lung Conditions",
@@ -43,7 +45,7 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Disease Progression",
-                          "desc":"Knee pain - relapsing <br> Reference Text - worsening pain in knee"
+                          "desc":"<b>Knee pain - relapsing </b><br> <a href='' target='_blank'>Reference Text - worsening pain in knee</a> <br> Page No: 6"
                         }
                       ];
   dataInsight:any = [
@@ -65,10 +67,18 @@ export class MedHomeComponent {
 
                     ];
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+  isUpload:boolean=false;
+
 
   constructor(
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    private _signInService: EventEmiterService,
+
+  ) {
+    this._signInService.fileUpload.subscribe((data: boolean) => {
+      this.isUpload = data;
+    });
+  }
 
   onChangeOverview(){
 
@@ -105,4 +115,19 @@ export class MedHomeComponent {
       height: '450px',
     });
   }
+  sendMessage(){
+    console.log(this.quesValue,"quesValue")
+    if(this.quesValue.length>0){
+      let temp_dict =  {
+          "title": this.quesValue,
+          "desc": "Please Wait, Working on results...... "
+      }
+      this.accordianData.push(temp_dict);
+      console.log(this.accordianData,"this.accordianData")
+    }
+    this.quesValue = '';
+
+
+  }
+
 }

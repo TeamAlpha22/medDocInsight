@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { EventEmiterService } from '../services/event-emiter.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -57,6 +58,8 @@ export class FileUploadComponent {
     private fb: FormBuilder,
     public router: Router,
     public dialog: MatDialog,
+    private _signInService: EventEmiterService,
+
 
 
   ) {}
@@ -204,6 +207,7 @@ export class FileUploadComponent {
     }
   }
   closePop(){
+    this._signInService.fileUpload.emit(true);
 
 
   }
