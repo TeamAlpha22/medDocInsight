@@ -16,14 +16,14 @@
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon>exit_to_app</mat-icon>
-            &nbsp;Hedis Measures
+            &nbsp;Quality Measures
           </ng-template>
         </mat-tab>
         <mat-tab >
 
           <ng-template mat-tab-label>
             <mat-icon>chrome_reader_mode</mat-icon>
-            &nbsp;Clinical Trial
+            &nbsp;Clinical Trials
           </ng-template>
         </mat-tab>
 
@@ -163,7 +163,7 @@
   </div>
 </div>
 
-<div class="data-insight" *ngIf="activeMatatb === 2">
+<div class="data-insight" *ngIf="activeMatatb === 9">
 
   <mat-grid-list cols="2" rowHeight="1:1" dir="ltr"  >
     <mat-grid-tile>
@@ -172,10 +172,6 @@
       <hr class="data-insight-input">
 
 
-      <!-- <mat-form-field class="data-insight-input" appearance="fill">
-        <mat-label>Frequently Asked Questions(click to get the response)</mat-label>
-        <input matInput placeholder="" disabled>
-      </mat-form-field> -->
       <div class="accordian-class-2" >
         <mat-accordion  *ngFor="let option of dataInsight">
           <mat-expansion-panel hideToggle>
@@ -258,5 +254,6 @@
 
   </mat-grid-list>
 </div>
+<ngx-ui-loader fgsColor="#FB4E0B" pbColor="#FB4E0B"></ngx-ui-loader>
 
 

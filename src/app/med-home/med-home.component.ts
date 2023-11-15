@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { Router } from '@angular/router';
 import { EventEmiterService } from '../services/event-emiter.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { SerpAPIService } from '../services/serp-api.service';
 
 @Component({
   selector: 'app-med-home',
@@ -18,7 +20,10 @@ export class MedHomeComponent {
   overview:boolean=false;
   activeMatatb:number=0;
   pdfRotation: number =0;
-  accordianData:any = [
+  accordianData:any = [{
+                          "title": "Document Summary",
+                          "desc": "Please Wait, Doc Summary being loading......"
+                        },
                         {
                           "title": "ICD codes",
                           "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications)</b> <br> Date: 3 October 2023<br> <a href='' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised </a> <br> Page Number: 3 <br><b>R70.0(Elevated ESR) </b><br> Date: 10 October 2023 <br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target=''>Reference Text: The blood report of patient shows elevated ESR(70.0)</a><br> Page Number: 5"
@@ -73,16 +78,24 @@ export class MedHomeComponent {
   constructor(
     public dialog: MatDialog,
     private _signInService: EventEmiterService,
+    private ngxLoader: NgxUiLoaderService,
+    private indexedDbService: SerpAPIService
 
   ) {
     this._signInService.fileUpload.subscribe((data: boolean) => {
-      this.isUpload = data;
+
+      this.ngxLoader.start();
+      setTimeout(() => {
+        this.ngxLoader.stop();
+        this.isUpload = data;
+      }, 15000);
+
     });
   }
-
-  onChangeOverview(){
+  ngOnInit() {
 
   }
+
   onChangeMedical(event:any){
     console.log('event',event.index)
     this.activeMatatb = event.index;
@@ -116,6 +129,7 @@ export class MedHomeComponent {
     });
   }
   sendMessage(){
+
     console.log(this.quesValue,"quesValue")
     if(this.quesValue.length>0){
       let temp_dict =  {

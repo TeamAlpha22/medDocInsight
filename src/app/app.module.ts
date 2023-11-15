@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatListModule} from '@angular/material/list';
+import {NgxUiLoaderModule} from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {MatListModule} from '@angular/material/list';
     MatDialogModule,
     MatRadioModule,
     MatProgressBarModule,
-    MatListModule
+    MatListModule,
+    NgxUiLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
