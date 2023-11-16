@@ -122,35 +122,34 @@ export class FileUploadComponent {
 
   //files upload
   onChange(files: any) {
-    localStorage.setItem('fileUploaded', 'false');
-    this.filenameList = [];
-    this.isCompleted = false;
-    this.submitLoader = false;
-    this.file_folder = {
-      id: this.folder_table.length + 1,
-      folder_name: 'Unclassified',
-      file_name: [],
-      isInclude: false,
-      isActive: false
+    console.log(files,'this.files')
 
-    };
-    this.file_folder = this.folder_table[0];
-    this.folder_table[0].isInclude = false;
-    this.folder_table[0].isActive = false;
+    // localStorage.setItem('fileUploaded', 'false');
+    // this.filenameList = [];
+    // this.isCompleted = false;
+    // this.submitLoader = false;
+    // this.file_folder = {
+    //   id: 2,
+    //   folder_name: 'Unclassified',
+    //   file_name: [],
+    //   isInclude: false,
+    //   isActive: false
+
+    // };
+    // this.file_folder = this.folder_table[0];
+    // this.folder_table[0].isInclude = false;
+    // this.folder_table[0].isActive = false;
     let tempArray: any = [];
     for (var i = 0; i < files.target.files.length; i++) {
       this.myFiles.push(files.target.files[i]);
       const obj = {
-        id: this.folder_table.length + i,
+        id:  i,
         folder_file: files.target.files[i].name,
         isInclude: false,
         isActive: false
       };
-      this.folder_table[0]['file_name'].push(obj);
-
-      tempArray.push(obj);
-      this.filenameList.push(files.target.files[i].name);
-      this.localFileList.push(files.target.files[i].name);
+      this.localFileList.push(obj);
+      console.log(this.localFileList,'this.localFileList')
     }
     this.fileUpload = files.target.files
     localStorage.setItem('folder_table', JSON.stringify(this.folder_table));

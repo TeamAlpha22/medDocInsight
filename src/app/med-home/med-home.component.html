@@ -113,8 +113,9 @@
         [render-text]="true"
         [original-size]="false"
         [zoom]="zoom"
-        [show-all]="true"
         [rotation]="pdfRotation"
+        [(page)]="pageVariable"
+        [show-all]="showAll"
         style="width: auto; height: 450px">
         </pdf-viewer>
       </div>
@@ -135,7 +136,7 @@
                   {{option.content}}{{panelOpenState ? 'open' : 'closed'}}
                 </mat-panel-description> -->
               </mat-expansion-panel-header>
-              <p class="inner-connet" [innerHTML]="option.desc"> {{option.desc}}</p>
+              <p class="inner-connet" [innerHTML]="option.desc"(click)="changePage(option.page_num)" > {{option.desc}}</p>
             </mat-expansion-panel>
           </mat-accordion>
           <input type="text" placeholder="Ask your query here..." class="send-meessage" (keydown.enter)="sendMessage()" [(ngModel)]="quesValue">

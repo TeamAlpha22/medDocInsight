@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { Router } from '@angular/router';
 import { EventEmiterService } from '../services/event-emiter.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SerpAPIService } from '../services/serp-api.service';
+import { PdfViewerComponent } from 'ng2-pdf-viewer/src/app/pdf-viewer/pdf-viewer.component';
+
 
 @Component({
   selector: 'app-med-home',
@@ -12,6 +14,7 @@ import { SerpAPIService } from '../services/serp-api.service';
   styleUrls: ['./med-home.component.css']
 })
 export class MedHomeComponent {
+  stringToSearch = 'hi';
   quesValue:string ="";
   isChatOpen:boolean = false;
   color1:any="#ffe6e9"
@@ -26,7 +29,8 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "ICD codes",
-                          "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications)</b> <br> Date: 3 October 2023<br> <a href='' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised </a> <br> Page Number: 3 <br><b>R70.0(Elevated ESR) </b><br> Date: 10 October 2023 <br> <a href='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf' target=''>Reference Text: The blood report of patient shows elevated ESR(70.0)</a><br> Page Number: 5"
+                          "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications)</b> <br> Date: 3 October 2023<br> <a href='javascript:void(0)'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised </a> <br> Page Number: 3 <br><b>R70.0(Elevated ESR) </b><br> Date: 10 October 2023 <br> <a href='javascript:void(0)' >Reference Text: The blood report of patient shows elevated ESR(70.0)</a><br> Page Number: 5",
+                          "page_num": 3
                         },
                         {
                           "title": "Medication History (Within past 6 months)",
@@ -34,7 +38,9 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Ulcerative collitis",
-                          "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) </b><br> Date: 3 October 2023 <br><a href='' target='_blank'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised</a><br> Page Number: 5"
+                          "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) </b><br> Date: 3 October 2023 <br><a href='javascript:void(0)' > Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised</a><br> Page Number: 5",
+                          "page_num": 2
+
                         },
                         {
                           "title": "Cardiac Disease",
@@ -42,7 +48,8 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Blood Disorders",
-                          "desc":"<b>DVT</b> <br> <a href='' target='_blank'>Reference Text -The patient has a medical history of DVT</a> <br> Page No: 4"
+                          "desc":"<b>DVT</b> <br> <a href='javascript:void(0)'>Reference Text -The patient has a medical history of DVT</a> <br> Page No: 4",
+                          "page_num": 1
                         },
                         {
                           "title": "Lung Conditions",
@@ -50,7 +57,8 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Disease Progression",
-                          "desc":"<b>Knee pain - relapsing </b><br> <a href='' target='_blank'>Reference Text - worsening pain in knee</a> <br> Page No: 6"
+                          "desc":"<b>Knee pain - relapsing </b><br> <a href='javascript:void(0)' >Reference Text - worsening pain in knee</a> <br> Page No: 6",
+                          "page_num": 2
                         }
                       ];
   dataInsight:any = [
@@ -73,7 +81,8 @@ export class MedHomeComponent {
                     ];
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   isUpload:boolean=false;
-
+  pageVariable: number= 1;
+  showAll:boolean=true;
 
   constructor(
     public dialog: MatDialog,
@@ -125,7 +134,7 @@ export class MedHomeComponent {
 
     const dialogRef = this.dialog.open(FileUploadComponent, {
       width: '800px',
-      height: '450px',
+      height: '390px',
     });
   }
   sendMessage(){
@@ -140,8 +149,11 @@ export class MedHomeComponent {
       console.log(this.accordianData,"this.accordianData")
     }
     this.quesValue = '';
-
-
+  }
+  changePage(pageNum:any){
+    console.log(pageNum,"pagenum")
+    this.pageVariable= pageNum;
+    this.showAll= false;
   }
 
 }

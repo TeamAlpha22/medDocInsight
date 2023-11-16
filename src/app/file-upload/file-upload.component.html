@@ -50,6 +50,10 @@
 
               </span
             ></span>
+            <div *ngFor="let file of localFileList" >
+              <div class="file-name">{{file.folder_file}}</div>
+            </div>
+
             <div class="action-btn">
             <button
               class="mat-btn-verify1">
@@ -60,14 +64,7 @@
             Cancel
             </button>
           </div>
-          <div class="file-names">
 
-            <div class="file-name">
-              <div *ngFor="let file of localFileList" >
-                <div class="file-name">{{file}}</div>
-              </div>
-            </div>
-          </div>
             </form>
         </div>
       </div>
