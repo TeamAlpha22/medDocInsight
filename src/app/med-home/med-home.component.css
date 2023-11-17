@@ -320,10 +320,12 @@ mat-expansion-panel-header {
   margin-left: 2px;
 }
 .feedback-2{
-margin-left: 5px;
+  margin-left: 5px;
+  color: red;
 }
 .feedback-1{
   padding-bottom: 30px;
+  color: green;
 
 }
 .active2{

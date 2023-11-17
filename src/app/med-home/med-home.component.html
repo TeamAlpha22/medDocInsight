@@ -138,9 +138,9 @@
                 </mat-panel-description> -->
               </mat-expansion-panel-header>
               <p class="inner-connet" [innerHTML]="option.desc"(click)="changePage(option.page_num)" > {{option.desc}}</p>
-            <div class="feedback">
-              <mat-icon  class="feedback-1" [ngClass]="statusClass" (click)="changefeedback()">thumb_up</mat-icon>
-              <mat-icon class="feedback-2" [ngClass]="statusClass2" (click)="changeback()">thumb_down</mat-icon>
+            <div class="feedback" >
+              <mat-icon  class="feedback-1" (click)="changefeedback()">thumb_up</mat-icon>
+              <mat-icon class="feedback-2"  (click)="changeback()">thumb_down</mat-icon>
             </div>
 
             </mat-expansion-panel>
