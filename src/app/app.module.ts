@@ -28,6 +28,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatListModule} from '@angular/material/list';
 import {NgxUiLoaderModule} from 'ngx-ui-loader';
+import {HttpClientModule} from '@angular/common/http'; // add this line
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import {NgxUiLoaderModule} from 'ngx-ui-loader';
     MatRadioModule,
     MatProgressBarModule,
     MatListModule,
-    NgxUiLoaderModule
+    NgxUiLoaderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { Router } from '@angular/router';
 import { EventEmiterService } from '../services/event-emiter.service';
+
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SerpAPIService } from '../services/serp-api.service';
 import { PdfViewerComponent } from 'ng2-pdf-viewer/src/app/pdf-viewer/pdf-viewer.component';
@@ -29,9 +30,13 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "ICD codes",
-                          "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications)</b> <br> Date: 3 October 2023<br> <a href='javascript:void(0)'> Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised </a> <br> Page Number: 3 <br><b>R70.0(Elevated ESR) </b><br> Date: 10 October 2023 <br> <a href='javascript:void(0)' >Reference Text: The blood report of patient shows elevated ESR(70.0)</a><br> Page Number: 5",
-                          "page_num": 3
+                          "desc": "<b>K51.019(Ulcerative Pancolitis)</b> <br> Date: 2019-01-27<br> <a href='javascript:void(0)'> Reference Text: K51.019 </a> <br> Page Number: 5 <br><b>R70.0(Elevated ESR) </b><br> Date: 2019-02-05<br> <a href='javascript:void(0)'>Reference Text: R70.0</a><br> Page Number: 5\
+                          <br><b>E118(Diabetes)</b> <br> Date: 2019-02-12<br> <a href='javascript:void(0)'> Reference Text: E118 </a> <br> Page Number: 5 <br><b>E78.1(Hypertriglyceridemia (disorder)) </b><br> Date: 1991-02-15<br> <a href='javascript:void(0)' >Reference Text: E78.1</a><br> Page Number: 5 \
+                          <br><b>E88.810(Metabolic syndrome X (disorder))</b> <br> Date: 2017-02-18<br> <a href='javascript:void(0)'> Reference Text: E88.810 </a> <br> Page Number: 5 <br><b> I82.4(DVT) </b><br> Date: 2019-02-18<br> <a href='javascript:void(0)' >Reference Text: I82.40</a><br> Page Number: 5\
+                          <br><b>M06.9(Rheumatoid Arthritis)</b> <br> Date: 2019-02-21<br> <a href='javascript:void(0)'> Reference Text: M06.9 </a> <br> Page Number: 5 <br><b> R73.9(Hyperglycemia (disorder)) </b><br> Date: 2019-02-18<br> <a href='javascript:void(0)' >Reference Text: R73.9</a><br> Page Number: 5",
+                          "page_num": 5
                         },
+
                         {
                           "title": "Medication History (Within past 6 months)",
                           "desc": ""
@@ -79,8 +84,8 @@ export class MedHomeComponent {
                       }
 
                     ];
-  pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
-  isUpload:boolean=false;
+  pdfSrc = "../../assets/ActemraPrior_Auth_Request_synthetic.pdf";
+  isUpload:boolean=true;
   pageVariable: number= 1;
   showAll:boolean=true;
 
@@ -88,7 +93,7 @@ export class MedHomeComponent {
     public dialog: MatDialog,
     private _signInService: EventEmiterService,
     private ngxLoader: NgxUiLoaderService,
-    private indexedDbService: SerpAPIService
+    private serpAPIService: SerpAPIService,
 
   ) {
     this._signInService.fileUpload.subscribe((data: boolean) => {
@@ -138,7 +143,20 @@ export class MedHomeComponent {
     });
   }
   sendMessage(){
+    let data = {
+      "question": "what is my name",
+      "container":"clinicaldocinsights"
+    }
 
+
+    this.serpAPIService.fetchLoadAuditData(data).subscribe((res:any)=>{
+      if(res){
+        console.log(res,"oeirir")
+      }
+
+    },(error) => {
+      let showLoader = false;
+    })
     console.log(this.quesValue,"quesValue")
     if(this.quesValue.length>0){
       let temp_dict =  {
@@ -149,6 +167,9 @@ export class MedHomeComponent {
       console.log(this.accordianData,"this.accordianData")
     }
     this.quesValue = '';
+
+
+
   }
   changePage(pageNum:any){
     console.log(pageNum,"pagenum")

@@ -25,7 +25,7 @@ export class LoginComponent {
   // Click submit button on login page
   onSubmit(): void {
     console.log(this.loginForm.value,"this.loginForm")
-   if(this.loginForm.value.username ==='user1@mail.com' && this.loginForm.value.password ==='12345'){
+   if(this.loginForm.value.username ==='exlhealth@exlservice.com' && this.loginForm.value.password ==='12345'){
      this.invalidLogin = false;
      this.router.navigate(["home"]);
    }else{
