@@ -26,7 +26,7 @@ export class MedHomeComponent {
   pdfRotation: number =0;
   accordianData:any = [{
                           "title": "Document Summary",
-                          "desc": "Please Wait, Doc Summary being loading......"
+                          "desc": "This is a prior authorization request for Actemra and contains clinical records of a patient's medical history, including medications, problems, surgeries and encounters. The medications prescribed to the patient include Hydrochlorothiazide 25 MG and 24 HR Metformin hydrochloride 500 MG Oral Tablet. The patient has been diagnosed with Ulcerative Pancolotis, Elevated ESR, Diabetes, Hypertriglyceridemia (disorder), Metabolic Syndrome X (disorder), DVT and Rheumatoid Arthritis. The surgeries performed on the patient include Colonoscopy and Medication Reconciliation (procedure). The encounters include Hemoglobin [Mass/volume] in Blood ; Hematocrit [Volume Fraction] of Blood ; MCV [Entitic volume] by Automated count; MCH [Entitic mass] by Automated count; MCHC [Mass/volume] ; additionally the patient reported worsening pain in their knee as an additional complaint"
                         },
                         {
                           "title": "ICD codes",
@@ -39,12 +39,13 @@ export class MedHomeComponent {
 
                         {
                           "title": "Medication History (Within past 6 months)",
-                          "desc": ""
+                          "desc": "<b>RxNorm 316049(Hydrochlorothiazide 25 MG)</b> <br> Date: 2019-05-27<br> <a href='javascript:void(0)'> Reference Text: RxNorm 316049</a> <br> Page Number: 3 <br><b>RxNorm 860975(24 HR Metformin hydrochloride 500 MG Extended Release Oral Tablet) </b><br> Date: 2019-06-12<br> <a href='javascript:void(0)'>Reference Text: RxNorm 860975</a><br> Page Number: 3",
+                          "page_num": 3
                         },
                         {
                           "title": "Ulcerative collitis",
-                          "desc": "<b>K51.019 (Ulcerative (chronic) pancolitis with unspecified complications) </b><br> Date: 3 October 2023 <br><a href='javascript:void(0)' > Reference Text: The Patient has been diagnosed with Ulcerative Colitis(K51.019). Further testing advised</a><br> Page Number: 5",
-                          "page_num": 2
+                          "desc": "<b>K51.019(Ulcerative Pancolitis)</b> <br> Date: 2019-01-27<br> <a href='javascript:void(0)'> Reference Text: K51.019 </a> <br> Page Number: 5",
+                          "page_num": 5
 
                         },
                         {
@@ -53,8 +54,8 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Blood Disorders",
-                          "desc":"<b>DVT</b> <br> <a href='javascript:void(0)'>Reference Text -The patient has a medical history of DVT</a> <br> Page No: 4",
-                          "page_num": 1
+                          "desc":"<b>DVT</b> <br> Date: 2019-01-27<br> <a href='javascript:void(0)'>Reference Text -The patient has a medical history of DVT</a> <br> Page No: 5",
+                          "page_num": 5
                         },
                         {
                           "title": "Lung Conditions",
@@ -62,8 +63,8 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Disease Progression",
-                          "desc":"<b>Knee pain - relapsing </b><br> <a href='javascript:void(0)' >Reference Text - worsening pain in knee</a> <br> Page No: 6",
-                          "page_num": 2
+                          "desc":"<b>Knee pain - relapsing </b><br> <a href='javascript:void(0)' >Reference Text - worsening pain in the knee</a> <br> Page No: 66",
+                          "page_num": 36
                         }
                       ];
   dataInsight:any = [
@@ -88,6 +89,7 @@ export class MedHomeComponent {
   isUpload:boolean=true;
   pageVariable: number= 1;
   showAll:boolean=true;
+  answer:string="";
 
   constructor(
     public dialog: MatDialog,
@@ -143,29 +145,41 @@ export class MedHomeComponent {
     });
   }
   sendMessage(){
-    let data = {
-      "question": "what is my name",
-      "container":"clinicaldocinsights"
-    }
 
 
-    this.serpAPIService.fetchLoadAuditData(data).subscribe((res:any)=>{
-      if(res){
-        console.log(res,"oeirir")
-      }
-
-    },(error) => {
-      let showLoader = false;
-    })
-    console.log(this.quesValue,"quesValue")
     if(this.quesValue.length>0){
       let temp_dict =  {
           "title": this.quesValue,
-          "desc": "Please Wait, Working on results...... "
+          "desc": "Please wait, We are working....."
       }
       this.accordianData.push(temp_dict);
       console.log(this.accordianData,"this.accordianData")
     }
+    let maxlength:number = 0;
+    maxlength = this.accordianData.length
+    let data = {
+      "question": this.quesValue,
+      "container":"clinicaldocinsights"
+    }
+    this.serpAPIService.fetchLoadAuditData(data).subscribe((res:any)=>{
+      if(res){
+        this.answer = res.response
+        this.accordianData[maxlength-1].desc = this.answer;
+        setTimeout(() => {
+          // console.log(maxlength,"length1")
+          // this.accordianData[maxlength-1]
+          // console.log(this.accordianData[maxlength-1],"length")
+          this.accordianData[maxlength-1].desc = this.answer;
+
+        }, 100);
+      }
+      console.log(this.answer,"this.answer")
+
+    },(error) => {
+
+      this.accordianData[maxlength-1].desc = error;
+    })
+
     this.quesValue = '';
 
 
@@ -175,6 +189,9 @@ export class MedHomeComponent {
     console.log(pageNum,"pagenum")
     this.pageVariable= pageNum;
     this.showAll= false;
+    setTimeout(() => {
+      this.showAll= true;
+    }, 1000000);
   }
 
 }
