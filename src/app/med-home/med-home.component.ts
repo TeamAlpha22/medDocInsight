@@ -86,7 +86,7 @@ export class MedHomeComponent {
 
                     ];
   pdfSrc = "../../assets/ActemraPrior_Auth_Request_synthetic.pdf";
-  isUpload:boolean=true;
+  isUpload:boolean=false;
   pageVariable: number= 1;
   showAll:boolean=true;
   answer:string="";
