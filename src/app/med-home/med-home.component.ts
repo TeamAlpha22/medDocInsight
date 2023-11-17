@@ -54,7 +54,7 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Blood Disorders",
-                          "desc":"<b>DVT</b> <br> Date: 2019-01-27<br> <a href='javascript:void(0)'>Reference Text -The patient has a medical history of DVT</a> <br> Page No: 5",
+                          "desc":"<b>DVT </b><br> Date: 2019-02-18<br> <a href='javascript:void(0)' >Reference Text: DVT </a><br> Page Number: 5",
                           "page_num": 5
                         },
                         {
@@ -63,7 +63,7 @@ export class MedHomeComponent {
                         },
                         {
                           "title": "Disease Progression",
-                          "desc":"<b>Knee pain - relapsing </b><br> <a href='javascript:void(0)' >Reference Text - worsening pain in the knee</a> <br> Page No: 66",
+                          "desc":"<b>Knee pain - relapsing </b><br> <a href='javascript:void(0)' >Reference Text - worsening pain in the knee</a> <br> Page No: 36",
                           "page_num": 36
                         }
                       ];
@@ -86,10 +86,13 @@ export class MedHomeComponent {
 
                     ];
   pdfSrc = "../../assets/ActemraPrior_Auth_Request_synthetic.pdf";
-  isUpload:boolean=false;
+  isUpload:boolean=true;
   pageVariable: number= 1;
   showAll:boolean=true;
   answer:string="";
+  statusClass: string = "nonactive";
+  statusClass2: string = "nonactive";
+
 
   constructor(
     public dialog: MatDialog,
@@ -113,7 +116,6 @@ export class MedHomeComponent {
   }
 
   onChangeMedical(event:any){
-    console.log('event',event.index)
     this.activeMatatb = event.index;
     this.overview= !this.overview;
 
@@ -153,7 +155,6 @@ export class MedHomeComponent {
           "desc": "Please wait, We are working....."
       }
       this.accordianData.push(temp_dict);
-      console.log(this.accordianData,"this.accordianData")
     }
     let maxlength:number = 0;
     maxlength = this.accordianData.length
@@ -166,32 +167,45 @@ export class MedHomeComponent {
         this.answer = res.response
         this.accordianData[maxlength-1].desc = this.answer;
         setTimeout(() => {
-          // console.log(maxlength,"length1")
-          // this.accordianData[maxlength-1]
-          // console.log(this.accordianData[maxlength-1],"length")
+
           this.accordianData[maxlength-1].desc = this.answer;
 
         }, 100);
       }
-      console.log(this.answer,"this.answer")
 
     },(error) => {
-
+      console.log(error,"error------->")
       this.accordianData[maxlength-1].desc = error;
     })
 
     this.quesValue = '';
 
-
-
   }
   changePage(pageNum:any){
-    console.log(pageNum,"pagenum")
     this.pageVariable= pageNum;
     this.showAll= false;
-    setTimeout(() => {
-      this.showAll= true;
-    }, 1000000);
+
+  }
+  showAllTrue(event:any){
+    console.log(" this.showAll", this.showAll)
+    this.showAll= true;
+  }
+  changefeedback(){
+    if(this.statusClass=='nonactive'){
+      this.statusClass = 'active1'
+    }else if(this.statusClass=='active1'){
+      this.statusClass='nonactive'
+    }
+    this.statusClass2='nonactive'
+  }
+  changeback(){
+    if(this.statusClass2=='nonactive'){
+      this.statusClass2 = 'active2'
+    }else if(this.statusClass2=='active2'){
+      this.statusClass2='nonactive'
+    }
+    this.statusClass='nonactive'
+
   }
 
 }

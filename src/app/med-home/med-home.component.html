@@ -70,8 +70,8 @@
         <div class="list-Data">
           <p><b>Name:</b> Cameron 381</p>
           <p><b>Gender:</b> M</p>
-          <p><b>Address:</b> Pier 186, 9St, New York, NY 10036</p>
-            <p><b>Patient Age:</b> 59</p>
+          <p><b>Address:</b> Home Primary: 937 Lakin Fort  Boston, Massachusetts 02108 </p>
+          <p><b>Patient Age:</b> 59</p>
           <p><b>Patient Weight:</b> 91</p>
         </div>
       </mat-card>
@@ -128,9 +128,9 @@
 
             </mat-expansion-panel>
             <mat-expansion-panel (opened)="panelOpenState = true"
-                                (closed)="panelOpenState = false">
+                                (closed)="panelOpenState = false" >
               <mat-expansion-panel-header class="mat-expansion-header">
-                <mat-panel-title>
+                <mat-panel-title (click)="showAllTrue(panelOpenState)">
                   {{option.title}}
                 </mat-panel-title>
                 <!-- <mat-panel-description>
@@ -138,6 +138,11 @@
                 </mat-panel-description> -->
               </mat-expansion-panel-header>
               <p class="inner-connet" [innerHTML]="option.desc"(click)="changePage(option.page_num)" > {{option.desc}}</p>
+            <div class="feedback">
+              <mat-icon  class="feedback-1" [ngClass]="statusClass" (click)="changefeedback()">thumb_up</mat-icon>
+              <mat-icon class="feedback-2" [ngClass]="statusClass2" (click)="changeback()">thumb_down</mat-icon>
+            </div>
+
             </mat-expansion-panel>
           </mat-accordion>
           <input type="text" placeholder="Ask your query here..." class="send-meessage" (keydown.enter)="sendMessage()" [(ngModel)]="quesValue">
