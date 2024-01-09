@@ -124,7 +124,7 @@ export class FileUploadComponent {
   onChange(files: any) {
     console.log(files,'this.files')
 
-    // localStorage.setItem('fileUploaded', 'false');
+    localStorage.setItem('fileUploaded', 'false');
     // this.filenameList = [];
     // this.isCompleted = false;
     // this.submitLoader = false;
